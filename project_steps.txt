@@ -1,0 +1,30 @@
+
+Precisamos ter:
+
+Saque;
+    
+    -Manda um e-mail avisando sobre o saque(pode ser apenas um log);
+    -Reduz o saldo.
+    
+Transferência;
+   
+    -Reduz o saldo;
+    -Aumenta o saldo do beneficiário.
+   
+Cadastro.
+
+    -nome;
+    -sobrenome;
+    -email;
+    -senha.
+   
+Regras:
+
+    -Nada de saldo negativo;
+    -A senha precisa ser criptografada;
+    -É necessário ter validações de campos.
+
+Deps:
+
+    -comeonin;
+    -credo.
