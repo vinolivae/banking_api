@@ -1,2 +1,1 @@
-# BankingApi.Umbrella
-# banking_api
+# Banking API
