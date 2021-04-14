@@ -7,4 +7,8 @@ services:
     environment:
       POSTGRES_USER: "postgres"
       POSTGRES_PASSWORD: "postgres"
+  adminer:
+    image: adminer
+    ports:
+      - 8080:8080
 
