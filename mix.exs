@@ -26,7 +26,8 @@ defmodule BankingApi.Umbrella.MixProject do
   defp deps do
     [
       {:credo, "~> 1.4", only: [:dev, :test], runtime: false},
-      {:bcrypt_elixir, "~> 2.3"}
+      {:bcrypt_elixir, "~> 2.3"},
+      {:jason, "~> 1.0"}
     ]
   end
 
