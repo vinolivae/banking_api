@@ -21,17 +21,17 @@ defmodule BankingApi.Accounts.Withdraw do
 
   defp update_balance(repo, account, value) do
     account
-    |> sub_value(value)
+    |> cast(value)
     |> update(repo, account)
   end
 
-  defp sub_value(%Account{balance: balance}, value) do
+  defp cast(%Account{balance: balance}, value) do
     value
     |> Decimal.cast()
-    |> cast(balance)
+    |> sub_value(balance)
   end
 
-  defp cast({:ok, balance}, value) do
+  defp sub_value({:ok, balance}, value) do
     Decimal.sub(value, balance)
   end
 
