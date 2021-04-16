@@ -1,7 +1,5 @@
 defmodule BankingApi.Users.Create do
-  alias BankingApi.Repo
-  alias BankingApi.User
-  alias BankingApi.Account
+  alias BankingApi.{Repo, User, Account}
   alias Ecto.Multi
 
   def create(params) do
