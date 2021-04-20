@@ -15,6 +15,9 @@ defmodule BankingApi.Accounts.Transaction do
         {:ok, to_account}
       end
     end)
+    |> case do
+      {:ok, {:ok, %Account{} = account}} -> {:ok, account}
+    end
   end
 
   defp get_account(id) do

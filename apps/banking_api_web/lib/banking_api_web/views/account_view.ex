@@ -12,10 +12,10 @@ defmodule BankingApiWeb.AccountView do
     }
   end
 
-  def render("transaction.json", %{account: %Account{id: id, balance: balance}}) do
+  def render("transaction.json", %{transaction: %Account{id: id, balance: balance}}) do
     %{
       message: "Transaction Carried out",
-      account: %{
+      transaction: %{
         id: id,
         balance: balance
       }
