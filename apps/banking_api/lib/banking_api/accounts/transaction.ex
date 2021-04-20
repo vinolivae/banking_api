@@ -1,14 +1,18 @@
 defmodule BankingApi.Accounts.Transaction do
   alias BankingApi.{Account, Repo}
 
-  @spec transaction(map) :: {:ok, Account.t(), Account.t()}
+  @doc """
+  to test run iex -S mix phx.server
+  iex > BankingApi.Accounts.Transaction.transaction(%{"from" => "account_id", "to" => "account_id", "value" => "decimal.value"})
+  """
+  @spec transaction(map) :: {:ok, Account.t()}
   def transaction(%{"from" => from, "to" => to, "value" => value}) do
     Repo.transaction(fn ->
       with {:ok, account} <- get_account(from),
-           {:ok, from_account} <- update_balance(account, value, :sub),
+           {:ok, _from_account} <- update_balance(account, value, :sub),
            {:ok, account} <- get_account(to),
            {:ok, to_account} <- update_balance(account, value, :sum) do
-        {:ok, from_account, to_account}
+        {:ok, to_account}
       end
     end)
   end
