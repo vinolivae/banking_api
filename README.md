@@ -3,14 +3,14 @@
 
 An Umbrella project developed with the purpose of studying elixir and phoenix.
 
-## Necessary Tools
+## Necessary Tools.
 
     Docker
     Docker-compose
     Elixir
     Erlang
 
-## First run
+## First run.
 
 ### Run these commands
     1 ~ mix deps.get
@@ -20,7 +20,7 @@ An Umbrella project developed with the purpose of studying elixir and phoenix.
     5 ~ mix ecto.migrate
     6 ~ iex -S mix phx.server 
 
-## Check the directory to test the application locally
+## Check the directory to test the application locally.
 
 ### open any file in these folders and view the @doc """
     |_apps
@@ -30,5 +30,28 @@ An Umbrella project developed with the purpose of studying elixir and phoenix.
                     |_ accounts
                     |_ users
 
-## For postman tests go to the link
-    
+## For postman or others.
+
+### POST User
+    http://localhost:4000/api/users/register
+    {
+        "name": "name", 
+        "surname": "surname",
+        "email": "email", 
+        "password": "password" 
+    }
+
+## POST Withdraw
+    http://localhost:4000/api/accounts/:id/withdraw
+    {
+        "id": "15bd914d-dc6b-49ec-a148-826ce5a38c5a",
+        "value": "1"
+    }
+
+## POST Transaction
+    http://localhost:4000/api/accounts/transaction
+    {
+        "from": "115bd581-bb8f-4a29-9fe0-7375069676e1",
+        "to": "c0775d87-6bef-45e2-b051-d5715d81c689",
+        "value": "1"
+    }
