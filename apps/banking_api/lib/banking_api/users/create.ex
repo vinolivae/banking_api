@@ -1,7 +1,8 @@
 defmodule BankingApi.Users.Create do
-  alias BankingApi.{Repo, User, Account}
+  alias BankingApi.{Account, Repo, User}
   alias Ecto.Multi
 
+  @spec create(params :: map) :: {:ok, %{account: Account.t(), user: User.t()}}
   def create(params) do
     Multi.new()
     |> Multi.insert(:create_user, User.changeset(params))
@@ -12,6 +13,10 @@ defmodule BankingApi.Users.Create do
       preload_data(repo, user)
     end)
     |> Repo.transaction()
+    |> case do
+      {:ok, %{create_account: account, create_user: user}} ->
+        {:ok, %{account: account, user: user}}
+    end
   end
 
   defp insert_account(repo, user) do
@@ -20,11 +25,7 @@ defmodule BankingApi.Users.Create do
     |> repo.insert()
   end
 
-  defp account_changeset(user_id) do
-    Account.changeset(%{user_id: user_id, balance: "1000.0"})
-  end
+  defp account_changeset(user_id), do: Account.changeset(%{user_id: user_id, balance: "1000.0"})
 
-  defp preload_data(repo, user) do
-    {:ok, repo.preload(user, :account)}
-  end
+  defp preload_data(repo, user), do: {:ok, repo.preload(user, :account)}
 end

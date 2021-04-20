@@ -1,22 +1,16 @@
 defmodule BankingApi.Accounts.Transaction do
-  @moduledoc false
   alias BankingApi.{Account, Repo}
 
+  @spec transaction(map) :: {:ok, Account.t(), Account.t()}
   def transaction(%{"from" => from, "to" => to, "value" => value}) do
     Repo.transaction(fn ->
-
-        from = get_account(from)
-        from
-        |> update_balance(value, :sub)
-        |> Repo.update()
-
-
-        to = get_account(to)
-        to
-        |> update_balance(value, :sum)
-        |> Repo.update()
+      with {:ok, account} <- get_account(from),
+           {:ok, from_account} <- update_balance(account, value, :sub),
+           {:ok, account} <- get_account(to),
+           {:ok, to_account} <- update_balance(account, value, :sum) do
+        {:ok, from_account, to_account}
+      end
     end)
-
   end
 
   defp get_account(id) do
@@ -38,16 +32,13 @@ defmodule BankingApi.Accounts.Transaction do
     |> operate_value(balance, operation)
   end
 
-  defp operate_value({:ok, balance}, value, operation) do
-    case operation do
-      :sum -> Decimal.add(value, balance)
-      :sub -> Decimal.sub(value, balance)
-      _ -> {:error, "Please, insert an operation"}
-    end
-  end
+  defp operate_value({:ok, balance}, value, :sum), do: Decimal.add(balance, value)
+  defp operate_value({:ok, balance}, value, :sub), do: Decimal.sub(value, balance)
+  defp operate_value({:ok, _balance}, _value, _any), do: {:error, "Invalid operation"}
 
   defp update(value, account) do
     params = %{balance: value}
+
     account
     |> Account.changeset(params)
     |> Repo.update()

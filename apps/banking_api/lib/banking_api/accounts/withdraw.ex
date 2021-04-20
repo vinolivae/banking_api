@@ -1,8 +1,8 @@
 defmodule BankingApi.Accounts.Withdraw do
   alias Ecto.Multi
-  alias BankingApi.{Repo, Account}
+  alias BankingApi.{Account, Repo}
 
-
+  @spec withdraw(map) :: {:ok, %{account: Account.t(), update_balance: Account.t()}}
   def withdraw(%{"id" => id, "value" => value}) do
     Multi.new()
     |> Multi.run(:account, fn repo, _changes -> get_account(repo, id) end)
@@ -10,6 +10,10 @@ defmodule BankingApi.Accounts.Withdraw do
       update_balance(repo, account, value)
     end)
     |> Repo.transaction()
+    |> case do
+      {:ok, %{account: account, update_balance: update_balance}} ->
+        {:ok, %{account: account, update_balance: update_balance}}
+    end
   end
 
   defp get_account(repo, id) do
@@ -37,6 +41,7 @@ defmodule BankingApi.Accounts.Withdraw do
 
   defp update(value, repo, account) do
     params = %{balance: value}
+
     account
     |> Account.changeset(params)
     |> repo.update()
