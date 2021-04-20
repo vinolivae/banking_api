@@ -7,7 +7,7 @@ defmodule BankingApi.Repo.Migrations.UserMigration do
       add :name, :string
       add :surname, :string
       add :email, :string
-      add :senha, :string
+      add :password_hash, :string
 
       timestamps()
     end

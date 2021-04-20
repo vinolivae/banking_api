@@ -1,0 +1,46 @@
+defmodule BankingApi.Accounts.Transaction do
+  alias BankingApi.{Account, Repo}
+
+  @spec transaction(map) :: {:ok, Account.t(), Account.t()}
+  def transaction(%{"from" => from, "to" => to, "value" => value}) do
+    Repo.transaction(fn ->
+      with {:ok, account} <- get_account(from),
+           {:ok, from_account} <- update_balance(account, value, :sub),
+           {:ok, account} <- get_account(to),
+           {:ok, to_account} <- update_balance(account, value, :sum) do
+        {:ok, from_account, to_account}
+      end
+    end)
+  end
+
+  defp get_account(id) do
+    case Repo.get(Account, id) do
+      nil -> {:error, "Account not found"}
+      account -> {:ok, account}
+    end
+  end
+
+  defp update_balance(account, value, operation) do
+    account
+    |> cast(value, operation)
+    |> update(account)
+  end
+
+  defp cast(%Account{balance: balance}, value, operation) do
+    value
+    |> Decimal.cast()
+    |> operate_value(balance, operation)
+  end
+
+  defp operate_value({:ok, balance}, value, :sum), do: Decimal.add(balance, value)
+  defp operate_value({:ok, balance}, value, :sub), do: Decimal.sub(value, balance)
+  defp operate_value({:ok, _balance}, _value, _any), do: {:error, "Invalid operation"}
+
+  defp update(value, account) do
+    params = %{balance: value}
+
+    account
+    |> Account.changeset(params)
+    |> Repo.update()
+  end
+end

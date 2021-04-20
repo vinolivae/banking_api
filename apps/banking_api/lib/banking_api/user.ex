@@ -2,16 +2,17 @@ defmodule BankingApi.User do
   use Ecto.Schema
   import Ecto.Changeset
 
-  alias BankingApi.Account
+  alias BankingApi.{Account, Repo}
 
-  @required_params [:name, :surname, :email, :senha]
+  @required_params [:name, :surname, :email, :password]
   @primary_key {:id, :binary_id, autogenerate: true}
 
   schema "users" do
     field :name, :string
     field :surname, :string
     field :email, :string
-    field :senha, :string
+    field :password, :string, virtual: true
+    field :password_hash, :string
 
     has_one :account, Account
     timestamps()
@@ -22,5 +23,13 @@ defmodule BankingApi.User do
     |> cast(params, @required_params)
     |> validate_required(@required_params)
     |> validate_length(:name, min: 3)
+    |> put_pass_hash()
+
   end
+
+  defp put_pass_hash(%Ecto.Changeset{valid?: true, changes: %{password: password}} = changeset) do
+    change(changeset, Bcrypt.add_hash(password))
+  end
+
+  defp put_pass_hash(changeset), do: changeset
 end
