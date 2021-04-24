@@ -4,7 +4,7 @@ defmodule BankingApi.Users.Create do
 
   @doc """
   to test run iex -S mix phx.server
-  iex > BankingApi.Users.Create.create(%{name: "name", surname: "surname", email: "email", password: "password"})
+  iex > BankingApi.Users.Create.create(%{name: "name", surname: "surname", email: "email@email", password: "password"})
   """
   @spec create(params :: map) :: {:ok, %{account: Account.t(), user: User.t()}}
   def create(params) do
