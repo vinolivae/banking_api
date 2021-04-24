@@ -23,6 +23,9 @@ defmodule BankingApi.User do
     |> cast(params, @required_params)
     |> validate_required(@required_params)
     |> validate_length(:name, min: 3)
+    |> validate_length(:password, min: 6)
+    |> validate_format(:email, ~r/@/)
+    |> unique_constraint(:email)
     |> put_pass_hash()
   end
 

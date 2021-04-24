@@ -11,5 +11,7 @@ defmodule BankingApi.Repo.Migrations.UserMigration do
 
       timestamps()
     end
+
+    create unique_index(:users, [:email])
   end
 end
