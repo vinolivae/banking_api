@@ -3,6 +3,8 @@
 
 An Umbrella project developed with the purpose of studying elixir and phoenix.
 
+All users have an account and each account has a balance of 1,000.00.
+
 ## Necessary Tools.
 
     Docker
@@ -22,7 +24,7 @@ An Umbrella project developed with the purpose of studying elixir and phoenix.
 
 ## Check the directory to test the application locally.
 
-### open any file in these folders and view the @doc """
+### open any file in these folders and view the @doc """..."""
     |_apps
         |_ banking_api
             |_ lib
@@ -41,14 +43,14 @@ An Umbrella project developed with the purpose of studying elixir and phoenix.
         "password": "password" 
     }
 
-## POST Withdraw
+## PATCH Withdraw
     http://localhost:4000/api/accounts/:id/withdraw
     {
         "id": "15bd914d-dc6b-49ec-a148-826ce5a38c5a",
         "value": "1"
     }
 
-## POST Transaction
+## PATCH Transaction
     http://localhost:4000/api/accounts/transaction
     {
         "from": "115bd581-bb8f-4a29-9fe0-7375069676e1",
