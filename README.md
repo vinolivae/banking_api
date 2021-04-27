@@ -3,7 +3,7 @@
 
 An Umbrella project developed with the purpose of studying elixir and phoenix.
 
-All users have an account and each account has a balance of 1,000.00.
+A banking API where all users have an account and each account has a balance of 1,000.00.
 
 ## Necessary Tools.
 
@@ -15,6 +15,7 @@ All users have an account and each account has a balance of 1,000.00.
 ## First run.
 
 ### Run these commands
+
     1 ~ mix deps.get
     2 ~ mix compile
     3 ~ docker-compose up -d
@@ -25,6 +26,7 @@ All users have an account and each account has a balance of 1,000.00.
 ## Check the directory to test the application locally.
 
 ### open any file in these folders and view the @doc """..."""
+
     |_apps
         |_ banking_api
             |_ lib
@@ -35,6 +37,7 @@ All users have an account and each account has a balance of 1,000.00.
 ## For postman or others.
 
 ### POST User
+
     http://localhost:4000/api/users/register
     {
         "name": "name", 
@@ -44,6 +47,7 @@ All users have an account and each account has a balance of 1,000.00.
     }
 
 ## PATCH Withdraw
+
     http://localhost:4000/api/accounts/:id/withdraw
     {
         "id": "15bd914d-dc6b-49ec-a148-826ce5a38c5a",
@@ -51,6 +55,7 @@ All users have an account and each account has a balance of 1,000.00.
     }
 
 ## PATCH Transaction
+
     http://localhost:4000/api/accounts/transaction
     {
         "from": "115bd581-bb8f-4a29-9fe0-7375069676e1",

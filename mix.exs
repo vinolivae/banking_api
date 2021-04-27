@@ -25,9 +25,7 @@ defmodule BankingApi.Umbrella.MixProject do
   # and cannot be accessed from applications inside the apps/ folder.
   defp deps do
     [
-      {:credo, "~> 1.4", only: [:dev, :test], runtime: false},
-      {:bcrypt_elixir, "~> 2.3"},
-      {:jason, "~> 1.0"}
+      {:credo, "~> 1.4", only: [:dev, :test], runtime: false}
     ]
   end
 
