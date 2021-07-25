@@ -1,8 +1,8 @@
-defmodule BankingApi.Account do
+defmodule BankingApi.Schemas.Account do
   use Ecto.Schema
   import Ecto.Changeset
 
-  alias BankingApi.User
+  alias BankingApi.Schemas.User
 
   @primary_key {:id, :binary_id, autogenerate: true}
   @foreign_key_type :binary_id

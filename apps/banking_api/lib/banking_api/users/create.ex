@@ -1,5 +1,6 @@
 defmodule BankingApi.Users.Create do
-  alias BankingApi.{Account, Repo, User}
+  alias BankingApi.Repo
+  alias BankingApi.Schemas.{Account, User}
   alias Ecto.Multi
 
   @doc """

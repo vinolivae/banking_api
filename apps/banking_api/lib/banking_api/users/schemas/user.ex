@@ -1,8 +1,8 @@
-defmodule BankingApi.User do
+defmodule BankingApi.Schemas.User do
   use Ecto.Schema
   import Ecto.Changeset
 
-  alias BankingApi.Account
+  alias BankingApi.Schemas.Account
 
   @required_params [:name, :surname, :email, :password]
   @primary_key {:id, :binary_id, autogenerate: true}

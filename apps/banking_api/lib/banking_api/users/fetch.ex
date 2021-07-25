@@ -1,5 +1,6 @@
 defmodule BankingApi.Users.Fetch do
-  alias BankingApi.{Repo, User}
+  alias BankingApi.Repo
+  alias BankingApi.Schemas.User
 
   @doc """
   to test run iex -S mix phx.server

@@ -1,6 +1,7 @@
 defmodule BankingApi.Accounts.Withdraw do
+  alias BankingApi.Repo
+  alias BankingApi.Schemas.Account
   alias Ecto.Multi
-  alias BankingApi.{Account, Repo}
 
   @doc """
   to test run iex -S mix phx.server
