@@ -7,7 +7,7 @@ defmodule BankingApi.Accounts.Transaction do
   iex > BankingApi.Accounts.Transaction.transaction(%{"from" => "account_id", "to" => "account_id", "value" => "decimal.value"})
   """
   @spec transaction(map) :: {:ok, Account.t()}
-  def transaction(%{"from" => from, "to" => to, "value" => value}) do
+  def transaction(%{from: from, to: to, value: value}) do
     Repo.transaction(fn ->
       with {:ok, account} <- get_account(from),
            {:ok, _from_account} <- update_balance(account, value, :sub),

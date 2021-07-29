@@ -7,7 +7,7 @@ defmodule BankingApi.Accounts.Inputs.Withdraw do
   @primary_key false
   embedded_schema do
     field :id, :string
-    field :value, :decimal
+    field :value, :integer
   end
 
   def changeset(model \\ %__MODULE__{}, params) do

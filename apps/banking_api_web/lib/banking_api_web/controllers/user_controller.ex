@@ -1,12 +1,16 @@
 defmodule BankingApiWeb.UserController do
   use BankingApiWeb, :controller
 
-  alias BankingApi.Users.Inputs.User
+  require Logger
+
+  alias BankingApi.Users.Inputs.User, as: UserInput
   alias BankingApi.Validation.ChangesetValidation
   alias BankingApiWeb.UserView
 
+  #
   def register(conn, params) do
-    with {:ok, input} <- ChangesetValidation.cast_and_apply(User, params),
+    with {:ok, input} <- ChangesetValidation.cast_and_apply(UserInput, params),
+         input <- Map.from_struct(input),
          {:ok, user} <- BankingApi.create_user(input) do
       conn
       |> put_status(:created)

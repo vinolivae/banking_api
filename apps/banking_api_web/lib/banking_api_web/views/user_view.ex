@@ -1,5 +1,5 @@
 defmodule BankingApiWeb.UserView do
-  alias BankingApi.{Account, User}
+  alias BankingApi.Schemas.{Account, User}
   use BankingApiWeb, :view
 
   def render("create.json", %{
@@ -9,8 +9,7 @@ defmodule BankingApiWeb.UserView do
             id: id,
             name: name,
             surname: surname,
-            email: email,
-            password: password
+            email: email
           }
         }
       }) do
@@ -24,8 +23,7 @@ defmodule BankingApiWeb.UserView do
         id: id,
         name: name,
         surname: surname,
-        email: email,
-        password: password
+        email: email
       }
     }
   end

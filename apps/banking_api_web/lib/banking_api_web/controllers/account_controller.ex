@@ -7,6 +7,7 @@ defmodule BankingApiWeb.AccountController do
 
   def withdraw(conn, params) do
     with {:ok, input} <- ChangesetValidation.cast_and_apply(Withdraw, params),
+         input <- Map.from_struct(input),
          {:ok, account} <- BankingApi.withdraw(input) do
       conn
       |> put_status(:ok)
@@ -17,6 +18,7 @@ defmodule BankingApiWeb.AccountController do
 
   def transaction(conn, params) do
     with {:ok, input} <- ChangesetValidation.cast_and_apply(Transaction, params),
+         input <- Map.from_struct(input),
          {:ok, to} <- BankingApi.transaction(input) do
       conn
       |> put_status(:ok)

@@ -4,7 +4,7 @@ defmodule BankingApi.Users.Fetch do
 
   @doc """
   to test run iex -S mix phx.server
-  iex > BankingApi.Accounts.FetchAccount.fetch_all_accounts()
+  iex > BankingApi.Users.Fetch.fetch_all()
   """
   @spec fetch_all :: {:error, :not_found} | {:ok, list}
   def fetch_all do

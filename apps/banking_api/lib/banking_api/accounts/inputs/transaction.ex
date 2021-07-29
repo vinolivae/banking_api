@@ -8,7 +8,7 @@ defmodule BankingApi.Accounts.Inputs.Transaction do
   embedded_schema do
     field :from, :string
     field :to, :string
-    field :value, :decimal
+    field :value, :integer
   end
 
   def changeset(model \\ %__MODULE__{}, params) do

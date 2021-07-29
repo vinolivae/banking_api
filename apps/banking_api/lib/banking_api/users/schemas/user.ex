@@ -11,11 +11,15 @@ defmodule BankingApi.Schemas.User do
     field :name, :string
     field :surname, :string
     field :email, :string
-    field :password, :string
+    field :password, :string, virtual: true
+    field :password_hash, :string
 
     has_one :account, Account
     timestamps()
   end
+
+  @doc false
+  def changeset(params) when is_map(params), do: changeset(%__MODULE__{}, params)
 
   def changeset(model \\ %__MODULE__{}, params) do
     model
