@@ -1,8 +1,8 @@
-defmodule BankingApi.User do
+defmodule BankingApi.Schemas.User do
   use Ecto.Schema
   import Ecto.Changeset
 
-  alias BankingApi.Account
+  alias BankingApi.Schemas.Account
 
   @required_params [:name, :surname, :email, :password]
   @primary_key {:id, :binary_id, autogenerate: true}
@@ -17,6 +17,9 @@ defmodule BankingApi.User do
     has_one :account, Account
     timestamps()
   end
+
+  @doc false
+  def changeset(params) when is_map(params), do: changeset(%__MODULE__{}, params)
 
   def changeset(model \\ %__MODULE__{}, params) do
     model

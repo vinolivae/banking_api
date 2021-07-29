@@ -1,6 +1,6 @@
 defmodule BankingApiWeb.AccountView do
   use BankingApiWeb, :view
-  alias BankingApi.Account
+  alias BankingApi.Schemas.Account
 
   def render("withdraw.json", %{account: %Account{id: id, balance: balance}}) do
     %{
