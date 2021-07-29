@@ -11,8 +11,7 @@ defmodule BankingApi.Schemas.User do
     field :name, :string
     field :surname, :string
     field :email, :string
-    field :password, :string, virtual: true
-    field :password_hash, :string
+    field :password, :string
 
     has_one :account, Account
     timestamps()

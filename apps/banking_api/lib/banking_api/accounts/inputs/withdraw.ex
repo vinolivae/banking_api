@@ -1,18 +1,19 @@
-defmodule BankingApi.Accounts.Inputs.Account do
+defmodule BankingApi.Accounts.Inputs.Withdraw do
   use Ecto.Schema
   import Ecto.Changeset
 
-  @required [:balance]
+  @required [:id, :value]
 
   @primary_key false
   embedded_schema do
-    field :balance, :decimal
+    field :id, :string
+    field :value, :decimal
   end
 
   def changeset(model \\ %__MODULE__{}, params) do
     model
     |> cast(params, @required)
     |> validate_required(@required)
-    |> validate_number(:balance, greater_than_or_equal_to: 0)
+    |> validate_number(:value, greater_than_or_equal_to: 0)
   end
 end
