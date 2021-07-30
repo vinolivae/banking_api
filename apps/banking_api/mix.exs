@@ -40,7 +40,7 @@ defmodule BankingApi.MixProject do
       {:ecto_sql, "~> 3.4"},
       {:postgrex, ">= 0.0.0"},
       {:jason, "~> 1.0"},
-      {:bcrypt_elixir, "~> 2.3"}
+      {:pbkdf2_elixir, "~> 1.4"}
     ]
   end
 
