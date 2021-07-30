@@ -44,7 +44,7 @@ defmodule BankingApiWeb.MixProject do
       {:banking_api, in_umbrella: true},
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"},
-      {:bcrypt_elixir, "~> 2.3"}
+      {:pbkdf2_elixir, "~> 1.4"}
     ]
   end
 
