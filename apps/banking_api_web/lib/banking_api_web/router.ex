@@ -10,7 +10,7 @@ defmodule BankingApiWeb.Router do
 
     post "/users/register", UserController, :register
 
-    patch "/accounts/:id/withdraw", AccountController, :withdraw
+    patch "/accounts/withdraw", AccountController, :withdraw
     patch "/accounts/transaction", AccountController, :transaction
   end
 end
