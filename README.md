@@ -48,7 +48,7 @@ A banking API where all users have an account and each account has a balance of 
 
 ## PATCH Withdraw
 
-    http://localhost:4000/api/accounts/insert_id_of_account_here/withdraw
+    http://localhost:4000/api/accounts/withdraw
     {
         "id": "15bd914d-dc6b-49ec-a148-826ce5a38c5a",
         "value": "1"

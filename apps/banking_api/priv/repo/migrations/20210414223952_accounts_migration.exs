@@ -13,5 +13,4 @@ defmodule BankingApi.Repo.Migrations.AccountsMigration do
 
     create constraint(:accounts, :balance_must_be_positive_or_zero, check: "balance >= 0")
   end
-
 end
