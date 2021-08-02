@@ -5,6 +5,8 @@ An Umbrella project developed with the purpose of studying elixir and phoenix.
 
 A banking API where all users have an account and each account has a balance of 1,000.00.
 
+## Check test coverage
+    ~ MIX_ENV=test mix coveralls
 ## Necessary Tools.
 
     Docker
